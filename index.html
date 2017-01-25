@@ -13,16 +13,16 @@
 <script type='text/javascript'>
   var circos = new circosJS({
       container: '#chart',
-      width: 420,
-      height: 420,
+      width: 520,
+      height: 520,
   });
 
   circos
     .layout(
         {
-            innerRadius: 160,
-            outerRadius: 200,
-            ticks: {display: true},
+            innerRadius: 200,
+            outerRadius: 230,
+            ticks: {display: false},
             labels: {
               position: 'center',
               display: true,
@@ -36,7 +36,7 @@
 
     .heatmap('temperatures', {
         innerRadius: 115,
-        outerRadius: 155,
+        outerRadius: 195,
         logScale: false,
         colorPalette: 'YlOrRd',
     }, heatmap)
