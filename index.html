@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <head>
-<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/nicgirault/circosJS/master/dist/colorBrewer.css">
-<script src="https://cdn.rawgit.com/nicgirault/circosJS/master/dist/circosJS.js" type="text/javascript"></script>
+<script src="circosJS.js" type="text/javascript"></script>
 <script src="data.js" type="text/javascript"></script>
+  <style type="text/css">
+  </style>
 </head>
 <body>
 <svg id='chart' style='display: block; margin: auto;'></svg>
@@ -20,7 +22,7 @@
         {
             innerRadius: 160,
             outerRadius: 200,
-            ticks: {display: false},
+            ticks: {display: true},
             labels: {
               position: 'center',
               display: true,
@@ -31,19 +33,22 @@
         },
         layout_data
     )
+
     .heatmap('temperatures', {
         innerRadius: 115,
         outerRadius: 155,
         logScale: false,
         colorPalette: 'YlOrRd',
     }, heatmap)
-    .heatmap('days-off', {
-        innerRadius: 105,
-        outerRadius: 114,
-        logScale: false,
-        colorPalette: 'Blues'
-    }, days_off)
+    //.heatmap('days-off', {
+    //    innerRadius: 105,
+    //    outerRadius: 114,
+    //    logScale: false,
+    //    colorPalette: 'Blues'
+    //}, days_off)
     .render();
+
+
 </script>
 </body>
 </html>
