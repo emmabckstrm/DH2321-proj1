@@ -586,7 +586,7 @@ circosJS.Chord = function() {
       startAngle = block.start + d.start / block.len * (block.end - block.start);
       endAngle = block.start + d.end / block.len * (block.end - block.start);
       return result = {
-        radius: layout.conf.innerRadius,
+        radius: layout.conf.innerRadius-85,
         startAngle: startAngle,
         endAngle: endAngle
       };
@@ -600,7 +600,7 @@ circosJS.Chord = function() {
       startAngle = block.start + d.start / block.len * (block.end - block.start);
       endAngle = block.start + d.end / block.len * (block.end - block.start);
       return result = {
-        radius: layout.conf.innerRadius,
+        radius: layout.conf.innerRadius-85,
         startAngle: startAngle,
         endAngle: endAngle
       };
@@ -650,22 +650,25 @@ circosJS.Chord = function() {
 };
 
 circosJS.Heatmap = function() {
-  console.log(this);
+  //console.log(this);
   circosJS.Track.call(this);
   this.parseData = circosJS.parseSpanValueData;
   this.renderDatumContainer = (function(_this) {
     return function(instance, parentElement, name, data, conf) {
       var group, track;
-      console.log(conf.colorPalette);
+      //console.log(conf.colorPalette);
       track = parentElement.append('g').attr('class', conf.colorPalette);
       return group = _this.renderBlock(track, data, instance._layout, conf);
     };
   })(this);
   this.renderDatum = function(parentElement, conf, layout, utils) {
-    console.log(parentElement);
+    //console.log(parentElement);
     var g = parentElement.selectAll('h').data(function(d) {
       return d.values;
-    }).enter().append('g');
+    }).enter().append('g')
+      .attr('class', function(d) {
+          return 'person colr' + d.value; 
+        });
     
     g.append('path')
         //.attr('class', 'tile')
@@ -683,10 +686,7 @@ circosJS.Heatmap = function() {
           })
           .endAngle(function(d, i) {
             return utils.theta(d.end, layout.blocks[d.block_id]);
-        }))
-        .attr('class', function(d) {
-          return 'tempTile q' + utils.ratio(d.value, conf.cmin, conf.cmax, conf.colorPaletteSize, conf.colorPaletteReverse, conf.logScale) + '-' + conf.colorPaletteSize;
-        })
+        }));
     g.append('text')
       .attr("x", function(d) { return 0; })
       .attr("y", function(d) { return 0; })
@@ -1152,9 +1152,24 @@ circosJS.Track = function() {
         circosJS.registerTooltip(instance, _this, selection, _this.conf);
       }
       selection.on('mouseover', function(d, i, j) {
+        var str = this.getAttribute("class");
+        var b = str.indexOf("colr");
+        if (b >= 0) {
+          var colrClass = str.substring(b, 12)
+        };
+        var colrSelect = ".person:not(."+String(colrClass)+")";
+        $(colrSelect).addClass("hide");
         return _this.dispatch.mouseover(d, i, j);
       });
       return selection.on('mouseout', function(d, i, j) {
+        var str = this.getAttribute("class");
+        var b = str.indexOf("colr");
+        if (b >= 0) {
+          var colrClass = str.substring(b, 12)
+        };
+        var colrSelect = ".person:not(."+String(colrClass)+")";
+        //$(colrSelect).addClass("show");
+        $(colrSelect).removeClass("hide");
         return _this.dispatch.mouseout(d, i, j);
       });
     };

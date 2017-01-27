@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <head>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/nicgirault/circosJS/master/dist/colorBrewer.css">
-<script src="circosJS.js" type="text/javascript"></script>
-<script src="data.js" type="text/javascript"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="colorBrewer.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="circosJS.js" type="text/javascript"></script>
+  <script src="data.js" type="text/javascript"></script>
+  <script src="studentData.js" type="text/javascript"></script>
+  <script src="functions.js" type="text/javascript"></script>
   <style type="text/css">
   </style>
 </head>
@@ -11,6 +18,8 @@
 <svg id='chart' style='display: block; margin: auto;'></svg>
 
 <script type='text/javascript'>
+  heatmap_data = dataToHeatmap(studentData);
+  console.log(heatmap_data);
   var circos = new circosJS({
       container: '#chart',
       width: 520,
@@ -34,12 +43,13 @@
         layout_data
     )
 
-    .heatmap('temperatures', {
+    .heatmap('people', {
         innerRadius: 115,
         outerRadius: 195,
         logScale: false,
         colorPalette: 'YlOrRd',
-    }, heatmap)
+    }, heatmap_data)
+    .chord('interests', {usePalette: false, color: '#fd6a62'}, chords_data)
     //.heatmap('days-off', {
     //    innerRadius: 105,
     //    outerRadius: 114,

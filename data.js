@@ -1,19 +1,19 @@
 var layout_data = [
-    { "len": 8, "color": "#8dd3c7", "label": "Group 1", "id": "g1" },
-    { "len": 8, "color": "#ffffb3", "label": "Group 2", "id": "g2" },
-    { "len": 8, "color": "#bebada", "label": "Group 3", "id": "g3" },
-    { "len": 8, "color": "#fb8072", "label": "Group 4", "id": "g4" },
-    { "len": 8, "color": "#80b1d3", "label": "Group 5", "id": "g5" },
-    { "len": 8, "color": "#fdb462", "label": "Group 6", "id": "g6" },
-    { "len": 8, "color": "#b3de69", "label": "Group 7", "id": "g7" },
-    { "len": 8, "color": "#fccde5", "label": "Group 8", "id": "g8" },
-    { "len": 8, "color": "#d9d9d9", "label": "Group 9", "id": "g9" },
-    { "len": 8, "color": "#bc80bd", "label": "Group 10", "id": "g10" }
+    { "len": 8, "color": "#ddd", "label": "Group 1 (8)", "id": "g1" },
+    { "len": 8, "color": "#ddd", "label": "Group 2 (8)", "id": "g2" },
+    { "len": 8, "color": "#ddd", "label": "Group 3 (8)", "id": "g3" },
+    { "len": 8, "color": "#ddd", "label": "Group 4 (8)", "id": "g4" },
+    { "len": 7, "color": "#ddd", "label": "Group 5 (7)", "id": "g5" },
+    { "len": 7, "color": "#ddd", "label": "Group 6 (7)", "id": "g6" },
+    { "len": 7, "color": "#ddd", "label": "Group 7 (7)", "id": "g7" },
+    { "len": 7, "color": "#ddd", "label": "Group 8 (7)", "id": "g8" },
+    { "len": 7, "color": "#ddd", "label": "Group 9 (7)", "id": "g9" },
+    { "len": 7, "color": "#ddd", "label": "Group 10 (7)", "id": "g10" }
 ];
 var chords_data = [
     // source_id, source_start, source_end, target_id, target_start, target_end, value
-    ['january', 1, 12, 'april', 18, 20, 2],
-    ['february', 20, 28, 'december', 1, 13, 1],
+    ['g2', 1, 2, 'g6', 4, 5, 2],
+    ['g3', 2, 3, 'g9', 6, 7, 1],
 ];
 
 var heatmap = [

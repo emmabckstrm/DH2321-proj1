@@ -1,0 +1,20 @@
+body {
+	font-family: sans-serif;
+}
+
+.show, .person { opacity: 1; }
+.hide { opacity: 0.3; }
+
+.person, .hide {
+	transition: all 0.5s ease-out;
+}
+
+.colr1 > path { fill: #566B9C }
+.colr2 > path { fill: #6E58A0  }
+.colr3 > path { fill: #E9D874 }
+.colr4 > path { fill: #E9C274 }
+.colr5 > path { fill: #D36986 }
+.colr6 > path { fill: #92CE67 }
+.colr7 > path { fill: #478E8B }
+.colr8 > path { fill: #E9A874 }
+
