@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font: 10px sans-serif;
+}
+
+svg text{
+  fill:grey;
+  font-size:11px;
+}
+svg .values text{
+  pointer-events:none;
+  stroke-width: 0.5px;
+}
+.groups:hover{
+  cursor:pointer;
+  font-weight:bold;
+}
+</style>
+<body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+<script>
+
+var data = [
+['Aldor','Aragorn',1]  //1, 1, 1
+,['Aldor','Arwen',0] 
+,['Aldor','Balin',1] 
+,['Aldor','Bereg',0] 
+,['Aldor','Bifur',1] 
+,['Aldor','Bofur',0] 
+,['Aldor','Bilbo',3] 
+,['Aldor','Bombadil',1] 
+,['Aldor','Bombur',1] 
+,['Aldor','Borin',1] 
+,['Aldor','Boromir',0] 
+,['Aldor','Bounder',1] 
+,['Aldor','Celeborn',0] 
+,['Aldor','Damrod',0] 
+,['Aldor','Denethor',0] 
+,['Aldor','Dorlas',0] 
+,['Aldor','Dwalin',1] 
+,['Aldor','Eldarion',1] 
+,['Aldor','Elendil',2] 
+,['Aldor','Elendur',0] 
+,['Aldor','Elrond',0] 
+,['Aldor','Eomer',1] 
+,['Aldor','Eothain',2] 
+,['Aldor','Eowyn',1] 
+,['Aldor','Faramir',1] 
+,['Aldor','Ferny',3] 
+,['Aldor','Fili',0] 
+,['Aldor','Freda',1] 
+,['Aldor','Frodo',1] 
+,['Aldor','Galadriel',1] 
+,['Aldor','Gamgee',0] 
+,['Aldor','Gandalf',0] 
+,['Aldor','Gimli',1] 
+,['Aldor','Gorbag',0] 
+,['Aldor','Grimbold',0] 
+,['Aldor','Grishnakh',0] 
+,['Aldor','Haldir',0] 
+,['Aldor','Haleth',0] 
+,['Aldor','Hama',0] 
+,['Aldor','Hardang',0] 
+,['Aldor','Idril',0] 
+,['Aldor','Irolas',1] 
+,['Aldor','Isildur',1] 
+,['Aldor','Kili',0] 
+,['Aldor','Legolas',0] 
+,['Aldor','Lindir',2] 
+,['Aldor','Lurtz',0] 
+,['Aldor','Madril',1] 
+,['Aldor','Maiar',1] 
+,['Aldor','Mauhur',1] 
+,['Aldor','Merry',1] 
+,['Aldor','Morwen',1] 
+,['Aldor','Oin',1] 
+,['Aldor','Otho',0] 
+,['Aldor','Pelendur',1] 
+,['Aldor','Pippin',2] 
+,['Aldor','Quickbeam',2] 
+,['Aldor','Rian',1] 
+,['Aldor','Sam',0] 
+,['Aldor','Sauron',0] 
+,['Aldor','Shagrat',1] 
+,['Aldor','Sharku',0] 
+,['Aldor','Smaug',0] 
+,['Aldor','Smeagol',1] 
+,['Aldor','Theoden',0] 
+,['Aldor','Theodred',0] 
+,['Aldor','Thorin',1] 
+,['Aldor','Ugluk',0] 
+,['Aldor','Uruk',0] 
+
+,['Aragorn','Aldor',1]  // 1, 6, 1
+,['Aragorn','Aragorn',1] 
+,['Aragorn','Arwen',0] 
+,['Aragorn','Balin',0] 
+,['Aragorn','Bereg',1] 
+,['Aragorn','Bifur',1] 
+,['Aragorn','Bilbo',1] 
+,['Aragorn','Bofur',0] 
+,['Aragorn','Bombadil',5] 
+,['Aragorn','Bombur',2] 
+,['Aragorn','Borin',2] 
+,['Aragorn','Boromir',0] 
+,['Aragorn','Bounder',1] 
+,['Aragorn','Celeborn',1] 
+,['Aragorn','Damrod',0] 
+,['Aragorn','Denethor',0] 
+,['Aragorn','Dorlas',0] 
+,['Aragorn','Dwalin',1] 
+,['Aragorn','Eldarion',2] 
+,['Aragorn','Elendil',1] 
+,['Aragorn','Elendur',0] 
+,['Aragorn','Elrond',2] 
+,['Aragorn','Eomer',2] 
+,['Aragorn','Eothain',1] 
+,['Aragorn','Eowyn',1] 
+,['Aragorn','Faramir',2] 
+,['Aragorn','Ferny',0] 
+,['Aragorn','Fili',0] 
+,['Aragorn','Freda',1] 
+,['Aragorn','Frodo',1] 
+,['Aragorn','Galadriel',2] 
+,['Aragorn','Gamgee',0] 
+,['Aragorn','Gandalf',0] 
+,['Aragorn','Gimli',3] 
+,['Aragorn','Gorbag',1] 
+,['Aragorn','Grimbold',1] 
+,['Aragorn','Grishnakh',0] 
+,['Aragorn','Haldir',4] 
+,['Aragorn','Haleth',0] 
+,['Aragorn','Hama',0] 
+,['Aragorn','Hardang',0] 
+,['Aragorn','Idril',0] 
+,['Aragorn','Irolas',1] 
+,['Aragorn','Isildur',1] 
+,['Aragorn','Kili',2] 
+,['Aragorn','Legolas',2] 
+,['Aragorn','Lindir',1] 
+,['Aragorn','Lurtz',1] 
+,['Aragorn','Madril',1] 
+,['Aragorn','Maiar',2] 
+,['Aragorn','Mauhur',1] 
+,['Aragorn','Merry',2] 
+,['Aragorn','Morwen',3] 
+,['Aragorn','Oin',1] 
+,['Aragorn','Otho',0] 
+,['Aragorn','Pelendur',1] 
+,['Aragorn','Pippin',1] 
+,['Aragorn','Quickbeam',1] 
+,['Aragorn','Rian',1] 
+,['Aragorn','Sam',0] 
+,['Aragorn','Sauron',3] 
+,['Aragorn','Shagrat',2] 
+,['Aragorn','Sharku',0] 
+,['Aragorn','Smaug',0] 
+,['Aragorn','Smeagol',2] 
+,['Aragorn','Theoden',0] 
+,['Aragorn','Theodred',0] 
+,['Aragorn','Thorin',2] 
+,['Aragorn','Ugluk',1] 
+,['Aragorn','Uruk',3] 
+
+
+,['Bombur','Madril',2]
+,['Bombur','Frodo',1]
+
+,['Frodo','Bombur',1]
+,['Frodo','Madril',0]
+,['Frodo','Gandalf',0]
+,['Frodo','Isildur',0]
+,['Frodo','Aldor',1]
+,['Frodo','Freda',0]
+,['Frodo','Bombadil',0]
+,['Frodo','Lurtz',0]
+,['Frodo','Faramir',0]
+,['Frodo','Celeborn',0]
+,['Frodo','Fili',0]
+,['Frodo','Haleth',0]
+,['Frodo','Hardang',0]
+,['Frodo','Eothain',1]
+,['Frodo','Lurtz',1]
+,['Frodo','Bombadil',1]
+,['Frodo','Ugluk',1]
+,['Frodo','Kili',1]
+,['Frodo','Gimli',1]
+,['Frodo','Maiar',1]
+,['Frodo','Aragorn',1]
+,['Frodo','Galadriel',1]
+,['Frodo','Bilbo',1]
+,['Frodo','Bereg',1]
+,['Frodo','Elrond',1]
+,['Frodo','Balin',1]
+,['Frodo','Sauron',1]
+,['Frodo','Morwen',1]
+,['Frodo','Shagrat',1]
+,['Frodo','Uruk',1]
+,['Frodo','Eldarion',1]
+,['Frodo','Theodred',1]
+,['Frodo','Grishnakh',1]
+,['Frodo','Ferny',1]
+,['Frodo','Haldir',1]
+,['Frodo','Thorin',1]
+,['Frodo','Legolas',1]
+,['Frodo','Borin',1]
+
+,['Madril','Bombur',2]
+,['Madril','Isildur',2]
+
+
+
+];
+
+var colors = {
+"Denethor": "#da4480"
+,"Aldor": "#da4480"
+,"Celeborn": "#da4480"
+,"Eomer": "#da4480"
+,"Galadriel": "#da4480"
+,"Hama": "#da4480"
+,"Mauhur": "#da4480"
+,"Oin": "#da4480"
+,"Pippin": "#da4480"
+,"Thorin": "#da4480"
+
+,"Borin" : "#5ab449"
+,"Bounder" : "#5ab449"
+,"Eldarion" : "#5ab449"
+,"Sam" : "#5ab449"
+,"Elendur" : "#5ab449"
+,"Merry" : "#5ab449"
+,"Bombadil" : "#5ab449"
+,"Bilbo" : "#5ab449"
+,"Aragorn" : "#5ab449"
+,"Freda" : "#5ab449"
+
+,"Eothain" : "#7f5acd"
+,"Isildur" : "#7f5acd"
+,"Boromir" : "#7f5acd"
+,"Smaug" : "#7f5acd"
+,"Faramir" : "#7f5acd"
+,"Legolas" : "#7f5acd"
+,"Arwen" : "#7f5acd"
+,"Irolas" : "#7f5acd"
+,"Otho" : "#7f5acd"
+,"Elendil" : "#7f5acd"
+
+,"Bombur" : "#50a26e"
+,"Hardang" : "#50a26e"
+,"Gimli" : "#50a26e"
+,"Idril" : "#50a26e"
+,"Bereg" : "#50a26e"
+,"Quickbeam" : "#50a26e"
+,"Dwalin" : "#50a26e"
+,"Smeagol" : "#50a26e"
+,"Haldir" : "#50a26e"
+,"Bifur" : "#50a26e"
+
+,"Theoden" : "#d1434b"
+,"Grimbold" : "#d1434b"
+,"Bofur" : "#d1434b"
+,"Gamgee" : "#d1434b"
+,"Shagrat" : "#d1434b"
+,"Damrod" : "#d1434b"
+,"Gorbag" : "#d1434b"
+,"Ugluk" : "#d1434b"
+,"Fili" : "#d1434b"
+,"Madril" : "#d1434b"
+
+,"Eowyn" : "#45c0bc"
+,"Pelendur" : "#45c0bc"
+,"Rian" : "#45c0bc"
+,"Frodo" : "#45c0bc"
+,"Ferny" : "#45c0bc"
+,"Morwen" : "#45c0bc"
+,"Dorlas" : "#45c0bc"
+,"Lindir" : "#45c0bc"
+,"Haleth" : "#45c0bc"
+,"Balin" : "#45c0bc"
+
+,"Elrond" : "#9c4b88"
+,"Sauron" : "#9c4b88"
+,"Grishnakh" : "#9c4b88"
+,"Theodred" : "#9c4b88"
+,"Uruk" : "#9c4b88"
+,"Sharku" : "#9c4b88"
+,"Gandalf" : "#9c4b88"
+,"Lurtz" : "#9c4b88"
+,"Kili" : "#9c4b88"
+,"Maiar" : "#9c4b88"
+
+};
+
+var sortOrder =[
+"GROUP 1"
+,"Frodo" // start group 1
+,"Bombur"
+,"Madril"
+,"Gandalf"
+,"Isildur"
+,"Aldor"
+,"Freda"    // end group 1
+,"GROUP 2"
+,"Bombadil" // start group 2
+,"Lurtz"
+,"Faramir"
+,"Celeborn"
+,"Fili"
+,"Haleth"
+,"Hardang" // end group 2
+,"GROUP 3"
+,"Gimli" // start group 3
+,"Kili"
+,"Ugluk"
+,"Smaug"
+,"Merry"
+,"Eowyn"
+,"Denethor" // end group 3
+,"GROUP 4"
+,"Aragorn"   // start group 4
+,"Maiar"
+,"Eomer"
+,"Gorbag"
+,"Idril"
+,"Eothain"
+,"Pelendur"  // end group 4
+,"GROUP 5"
+,"Elrond"    // start group 5
+,"Galadriel"
+,"Bereg"
+,"Bilbo"
+,"Elendil"
+,"Damrod"
+,"Balin"   // end gorup 5
+,"GROUP 6"
+,"Sauron"    // start group 6
+,"Morwen"
+,"Shagrat"
+,"Hama"
+,"Irolas"
+,"Elendur"
+,"Quickbeam"   // end group 6
+,"GROUP 7"
+,"Uruk"    // start group 7
+,"Eldarion"
+,"Otho"
+,"Mauhur"
+,"Dwalin"
+,"Dorlas"
+,"Gamgee"  // end group 7
+,"GROUP 8"
+,"Bounder"   // start group8
+,"Oin"
+,"Theodred"
+,"Rian"
+,"Smeagol"
+,"Arwen"
+,"Bofur"   // end group8
+,"GROUP 9"
+,"Haldir"    // starta g9
+,"Boromir"
+,"Pippin"
+,"Sam"
+,"Ferny"
+,"Grishnakh"
+,"Grimbold"    //end g9
+,"GROUP 10"
+,"Legolas"   //start g 10
+,"Borin"
+,"Thorin"
+,"Lindir"
+,"Bifur"
+,"Theoden"
+,"Sharku"    // end g10
+];
+
+function sort(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)); }
+
+var ch = viz.ch().data(data)
+      .padding(.01)
+      .sort(sort)
+	  .innerRadius(430)
+	  .outerRadius(450)
+	  .duration(1000)
+	  .chordOpacity(0.3)
+	  .labelPadding(.03)
+      .fill(function(d){ return colors[d];});
+
+var width=1200, height=1100;
+
+var svg = d3.select("body").append("svg").attr("height",height).attr("width",width);
+
+svg.append("g").attr("transform", "translate(600,550)").call(ch);
+
+// adjust height of frame in bl.ocks.org
+d3.select(self.frameElement).style("height", height+"px").style("width", width+"px");     
+</script>
