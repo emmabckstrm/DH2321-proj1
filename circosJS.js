@@ -620,7 +620,13 @@ circosJS.Chord = function() {
         return getTarget(d, layout);
       })).attr('opacity', function(d) {
         console.log(d);
-        return d.value/10 || conf.opacity;
+        var opac;
+        if (d.value === 0) {
+          opac = 0;
+        } else {
+          opac = d.value/5;
+        }
+        return opac;
       }).on('mouseover', (function(_this) {
         return function(d, i, j) {
           return _this.dispatch.mouseover(d, i, j);
