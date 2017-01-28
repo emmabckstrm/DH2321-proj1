@@ -22,7 +22,10 @@
   //console.log(heatmap_data);
 
   var test = dataToGroupNum(studentData);
-  console.log(test.Aldor);
+  //console.log(test.Aldor);
+
+  var c_data = dataToChord(interest_data, test);
+  //console.log(c_data);
 
   var circos = new circosJS({
       container: '#chart',
@@ -53,7 +56,7 @@
         logScale: false,
         colorPalette: 'YlOrRd',
     }, heatmap_data)
-    .chord('c_interests', {usePalette: false, color: '#fd6a62'}, chords_data)
+    .chord('c_interests', {usePalette: false, color: '#fd6a62'}, c_data)
     //.heatmap('days-off', {
     //    innerRadius: 105,
     //    outerRadius: 114,

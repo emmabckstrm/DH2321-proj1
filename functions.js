@@ -20,7 +20,7 @@ var dataToHeatmap = function(data) {
 		var curr = data[i]; //current obj
 		var currArray = [];
 
-		currArray.push('g' + String(curr.group)); // group id
+		currArray.push('grp' + String(curr.group)); // group id
 		currArray.push(curr.groupindex-1);
 		currArray.push(curr.groupindex);
 		currArray.push(topSkillNum[String(curr.top)]);
@@ -41,7 +41,7 @@ var dataToGroupNum = function(data) {
 
 		output_data[curr.alias] = {
 			group: curr.group,
-			groupIndex: curr.groupindex
+			groupindex: curr.groupindex
 		};
 	}
 
@@ -66,11 +66,11 @@ var dataToChord = function(data, groupRef) {
 		var alias2 = groupRef[curr[1]];
 		var currArray = [];
 
-		currArray.push('g' + String(alias1.group)); // group id
+		currArray.push('grp' + String(alias1.group)); // group id
 		currArray.push(alias1.groupindex-1);
 		currArray.push(alias1.groupindex);
 
-		currArray.push('g' + String(alias2.group)); // group id
+		currArray.push('grp' + String(alias2.group)); // group id
 		currArray.push(alias2.groupindex-1);
 		currArray.push(alias2.groupindex);
 

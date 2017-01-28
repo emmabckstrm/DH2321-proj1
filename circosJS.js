@@ -619,7 +619,8 @@ circosJS.Chord = function() {
       }).target(function(d) {
         return getTarget(d, layout);
       })).attr('opacity', function(d) {
-        return d.opacity || conf.opacity;
+        console.log(d);
+        return d.value/10 || conf.opacity;
       }).on('mouseover', (function(_this) {
         return function(d, i, j) {
           return _this.dispatch.mouseover(d, i, j);
@@ -672,8 +673,9 @@ circosJS.Heatmap = function() {
       return d.values;
     }).enter().append('g')
       .attr('class', function(d) {
-          console.log(d);
-          return 'person colr' + d.value + ' ' + d.block_id+d.end + ' ' + d.label; 
+          //console.log(d);
+          var classes = 'person colr' + d.value + ' ' + d.block_id+d.end + ' ' + d.label;
+          return classes; 
         });
     
     g.append('path')
@@ -1163,20 +1165,37 @@ circosJS.Track = function() {
         if (b >= 0) {
           var colrClass = str.substring(b, b+5)
         };
+        var c = str.indexOf("grp");
+        if (c >= 0) {
+          var grpClass = str.substring(c, c+6)
+          grpClass = grpClass.replace(/\s/g,'')
+          console.log(grpClass);
+        };
+        var chordSelect = ".chord:not(."+String(grpClass)+")"; 
+        console.log(chordSelect);
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).addClass("hide");
+        $(chordSelect).addClass("hide");
         return _this.dispatch.mouseover(d, i, j);
       });
       return selection.on('mouseout', function(d, i, j) {
         var str = this.getAttribute("class");
         var b = str.indexOf("colr");
         if (b >= 0) {
-          var colrClass = str.substring(b, 12)
+          var colrClass = str.substring(b, b+5)
         };
+        var c = str.indexOf("grp");
+        if (c >= 0) {
+          var grpClass = str.substring(c, c+6)
+          grpClass = grpClass.replace(/\s/g,'')
+          console.log(grpClass);
+        };
+        var chordSelect = ".chord:not(."+String(grpClass)+")"; 
+        console.log(chordSelect);
         var colrSelect = ".person:not(."+String(colrClass)+")";
-        //$(colrSelect).addClass("show");
         $(colrSelect).removeClass("hide");
-        return _this.dispatch.mouseout(d, i, j);
+        $(chordSelect).removeClass("hide");
+        return _this.dispatch.mouseover(d, i, j);
       });
     };
   })(this);
