@@ -18,8 +18,12 @@
 <svg id='chart' style='display: block; margin: auto;'></svg>
 
 <script type='text/javascript'>
-  heatmap_data = dataToHeatmap(studentData);
-  console.log(heatmap_data);
+  var heatmap_data = dataToHeatmap(studentData);
+  //console.log(heatmap_data);
+
+  var test = dataToGroupNum(studentData);
+  console.log(test.Aldor);
+
   var circos = new circosJS({
       container: '#chart',
       width: 520,
@@ -43,13 +47,13 @@
         layout_data
     )
 
-    .heatmap('people', {
+    .heatmap('hm_people', {
         innerRadius: 115,
         outerRadius: 195,
         logScale: false,
         colorPalette: 'YlOrRd',
     }, heatmap_data)
-    .chord('interests', {usePalette: false, color: '#fd6a62'}, chords_data)
+    .chord('c_interests', {usePalette: false, color: '#fd6a62'}, chords_data)
     //.heatmap('days-off', {
     //    innerRadius: 105,
     //    outerRadius: 114,

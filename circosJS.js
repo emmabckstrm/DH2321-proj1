@@ -609,21 +609,26 @@ circosJS.Chord = function() {
   this.renderChords = function(parentElement, name, conf, data, layout, ratio, getSource, getTarget) {
     var link, track;
     track = parentElement.append('g').attr('class', conf.colorPalette);
-    link = track.selectAll('.chord').data(data).enter().append('path').attr('class', 'chord').attr('d', d3.svg.chord().source(function(d) {
-      return getSource(d, layout);
-    }).target(function(d) {
-      return getTarget(d, layout);
-    })).attr('opacity', function(d) {
-      return d.opacity || conf.opacity;
-    }).on('mouseover', (function(_this) {
-      return function(d, i, j) {
-        return _this.dispatch.mouseover(d, i, j);
-      };
-    })(this)).on('mouseout', (function(_this) {
-      return function(d, i, j) {
-        return _this.dispatch.mouseout(d, i, j);
-      };
-    })(this));
+    //console.log("yoyyoyo",data);
+    link = track.selectAll('.chord').data(data).enter().append('path')
+      .attr('class', function(d) {
+        return 'chord ' + d.source.id + d.source.end + ' ' + d.target.id + d.target.end;
+      }).attr('d', d3.svg.chord()
+      .source(function(d) {
+        return getSource(d, layout);
+      }).target(function(d) {
+        return getTarget(d, layout);
+      })).attr('opacity', function(d) {
+        return d.opacity || conf.opacity;
+      }).on('mouseover', (function(_this) {
+        return function(d, i, j) {
+          return _this.dispatch.mouseover(d, i, j);
+        };
+      })(this)).on('mouseout', (function(_this) {
+        return function(d, i, j) {
+          return _this.dispatch.mouseout(d, i, j);
+        };
+      })(this));
     if (conf.usePalette) {
       link.attr('class', function(d) {
         return 'q' + ratio(d.value, conf.cmin, conf.cmax, conf.colorPaletteSize, conf.colorPaletteReverse, conf.logScale) + '-' + conf.colorPaletteSize;
@@ -667,7 +672,8 @@ circosJS.Heatmap = function() {
       return d.values;
     }).enter().append('g')
       .attr('class', function(d) {
-          return 'person colr' + d.value; 
+          console.log(d);
+          return 'person colr' + d.value + ' ' + d.block_id+d.end + ' ' + d.label; 
         });
     
     g.append('path')
@@ -1155,7 +1161,7 @@ circosJS.Track = function() {
         var str = this.getAttribute("class");
         var b = str.indexOf("colr");
         if (b >= 0) {
-          var colrClass = str.substring(b, 12)
+          var colrClass = str.substring(b, b+5)
         };
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).addClass("hide");
