@@ -43,14 +43,6 @@
     //var c_data = dataToChord(int_data, test);
     //console.log(c_data);
 
-    var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10, 0])
-      .html(function(d) {
-        return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
-      })
-
-
     // Rendering the viz
     var circos = new circosJS({
         container: '#chart',
