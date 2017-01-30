@@ -689,6 +689,9 @@ circosJS.Heatmap = function() {
         .attr('id', function(d) {
           return 'path_' + String(d.block_id) + '_' + String(d.end)
         })
+        .attr('class', function(d) {
+          return d.label; 
+        })
         .attr('opacity', function(d) {
           return d.opacity || conf.opacity;
         })
@@ -1165,6 +1168,7 @@ circosJS.Track = function() {
         circosJS.registerTooltip(instance, _this, selection, _this.conf);
       }
       selection.on('mouseover', function(d, i, j) {
+        renderInterests(d.label);
         var str = this.getAttribute("class");
         var b = str.indexOf("colr");
         if (b >= 0) {
@@ -1184,6 +1188,7 @@ circosJS.Track = function() {
         return _this.dispatch.mouseover(d, i, j);
       });
       return selection.on('mouseout', function(d, i, j) {
+        removeInterests();
         var str = this.getAttribute("class");
         var b = str.indexOf("colr");
         if (b >= 0) {

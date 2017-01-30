@@ -41,6 +41,101 @@ var renderSkills = function(id) {
 		container.appendChild(skill);
 	}
 }
+var renderAllInterests = function() {
+	var container = document.getElementById("interests");
+	for (var i=0;i<interests.length;i++) {
+
+		var interest = document.createElement("div");
+		interest.className = "interest";
+		interest.innerHTML = interests[i];
+
+		container.appendChild(interest);
+	}
+}
+
+var renderInterests = function(alias) {
+	var ints = interest_keys[alias];
+
+	var container = document.getElementById("interests");
+	for (var i=0;i<ints.length;i++) {
+
+		var interest = document.createElement("div");
+		interest.className = "interest";
+		interest.innerHTML = ints[i];
+
+		container.appendChild(interest);
+	}
+}
+var removeInterests = function() {
+	var container = document.getElementById("interests");
+	container.innerHTML = '';
+}
+
+var intKeys = function(data) {
+	var output_data = {};
+
+	for (var i=0; i<data.length; i++) {
+		var currStudent = data[i]; //current obj
+		var int_array = [];
+
+		if (currStudent.hobbycreative) {
+			int_array.push("Creative");
+		}
+		if (currStudent.hobbyphysical) {
+			int_array.push("Physical activities");
+		}
+		if (currStudent.hobbytech) {
+			int_array.push("Technology");
+		}
+		if (currStudent.hobbymedia) {
+			int_array.push("Media");
+		}
+		if (currStudent.hobbygames) {
+			int_array.push("Games");
+		}
+		if (currStudent.hobbypsychology) {
+			int_array.push("Psychology");
+		}
+		if (currStudent.hobbysocial) {
+			int_array.push("Socializing");
+		}
+		if (currStudent.hobbyprogramming) {
+			int_array.push("programming");
+		}
+		if (currStudent.hobbygraphics) {
+			int_array.push("graphics");
+		}
+		if (currStudent.hobbytravel) {
+			int_array.push("travel");
+		}
+		if (currStudent.hobbyfood) {
+			int_array.push("food");
+		}
+		if (currStudent.hobbypolitics) {
+			int_array.push("politics");
+		}
+		if (currStudent.hobbysociety) {
+			int_array.push("society");
+		}
+		if (currStudent.hobbyscience) {
+			int_array.push("science");
+		}
+		if (currStudent.hobbydesign) {
+			int_array.push("design");
+		}
+		if (currStudent.hobbyculture) {
+			int_array.push("culture");
+		}
+		if (currStudent.hobbyeducation) {
+			int_array.push("education");
+		}
+
+
+		output_data[currStudent.alias] = int_array;
+	}
+
+	document.getElementById("output").innerHTML = JSON.stringify(output_data);
+};
 
 // Functions to transform the raw data
 var dataToHeatmap = function(data) {
@@ -63,7 +158,7 @@ var dataToHeatmap = function(data) {
 
 		output_data.push(currArray);
 	}
-	document.getElementById("output").innerHTML = JSON.stringify(output_data);
+	//document.getElementById("output").innerHTML = JSON.stringify(output_data);
 	return output_data;
 };
 
@@ -192,13 +287,6 @@ var similarInterestData = function(data) {
 	}
 	return output_data;	
 };
-
-var dataToInterest = function(data) {
-
-}
-
-
-
 
 
 

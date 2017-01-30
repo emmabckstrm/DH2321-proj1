@@ -6,6 +6,7 @@
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   <link rel="stylesheet" type="text/css" href="colorBrewer.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="circosJS.js" type="text/javascript"></script>
@@ -17,14 +18,20 @@
 </head>
 <body>
   <h1>IVIS17 - Project 1</h1>
-  <svg id='chart' style='display: block; margin: auto;'></svg>
   <div id="legend" class="legend"><h3>Skills</h3></div>
+  <svg id='chart' style='display: block; margin: auto;'></svg>
+  <h3>Interests</h3>
+  <div id="interests"></div>
+  
 
   <pre id="output"></pre>
 
   <script type='text/javascript'>
     renderSkills("legend");
+    //renderAllInterests();
+    
     // Functions to transform the data
+
     //var heatmap_data = dataToHeatmap(studentData);
     //console.log(heatmap_data);
 
@@ -37,7 +44,12 @@
     //var c_data = dataToChord(int_data, test);
     //console.log(c_data);
 
-    
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
+      })
 
 
     // Rendering the viz
@@ -71,6 +83,7 @@
       }, heatmap)
       .chord('c_interests', {usePalette: false, color: '#fd6a62'}, chords_data)
       .render();
+
 
       $( ".skill" ).mouseover(function(e) {
         var colrClass = e.currentTarget.classList[1];
