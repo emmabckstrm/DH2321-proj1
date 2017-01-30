@@ -89,7 +89,9 @@
         //         var colrClass = str.substring(b, b+5)
         //       };
         var colrSelect = ".person:not(."+String(colrClass)+")";
+        var skillSelect = ".skill:not(."+String(colrClass)+")";
         $(colrSelect).addClass("hide");
+        $(skillSelect).addClass("hide");
       });
       $( ".skill" ).mouseout(function(e) {
         var colrClass = e.currentTarget.classList[1];
@@ -100,7 +102,9 @@
         //         var colrClass = str.substring(b, b+5)
         //       };
         var colrSelect = ".person:not(."+String(colrClass)+")";
+        var skillSelect = ".skill:not(."+String(colrClass)+")";
         $(colrSelect).removeClass("hide");
+        $(skillSelect).removeClass("hide");
       });
 
   </script>

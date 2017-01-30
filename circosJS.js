@@ -1181,9 +1181,10 @@ circosJS.Track = function() {
           //console.log(grpClass);
         };
         var chordSelect = ".chord:not(."+String(grpClass)+")"; 
-        //console.log(chordSelect);
+        var skillSelect = ".skill:not(."+String(colrClass)+")";
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).addClass("hide");
+        $(skillSelect).addClass("hide");
         $(chordSelect).addClass("hide");
         return _this.dispatch.mouseover(d, i, j);
       });
@@ -1201,9 +1202,10 @@ circosJS.Track = function() {
           //console.log(grpClass);
         };
         var chordSelect = ".chord:not(."+String(grpClass)+")"; 
-        //console.log(chordSelect);
+        var skillSelect = ".skill:not(."+String(colrClass)+")";
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).removeClass("hide");
+        $(skillSelect).removeClass("hide");
         $(chordSelect).removeClass("hide");
         return _this.dispatch.mouseover(d, i, j);
       });
