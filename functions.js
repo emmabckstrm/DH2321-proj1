@@ -8,6 +8,16 @@ var topSkillNum = {
 	"math": 7,
 	"hci": 6,
 };
+var topSkills = [
+	"ivis",
+	"ux",
+	"stats",
+	"prog",
+	"art",
+	"user",
+	"math",
+	"hci",
+];
 
 var dataToHeatmap = function(data) {
 	// each OUTPUT datum should be
@@ -162,6 +172,19 @@ var interestData = function(data) {
 
 };
 
+
+var renderSkills = function(id) {
+	var container = document.getElementById(id);
+	for (var i=0;i<topSkills.length;i++) {
+		//console.log(topSkills[i]);
+
+		var skill = document.createElement("div");
+		skill.className = "skill colr" + topSkillNum[topSkills[i]];
+		skill.innerHTML = topSkills[i];
+
+		container.appendChild(skill);
+	}
+}
 
 
 

@@ -10,12 +10,28 @@ body {
 	transition: all 0.5s ease-out;
 }
 
-.colr1 > path { fill: #566B9C }
-.colr2 > path { fill: #6E58A0  }
-.colr3 > path { fill: #E9D874 }
-.colr4 > path { fill: #E9C274 }
-.colr5 > path { fill: #D36986 }
-.colr6 > path { fill: #92CE67 }
-.colr7 > path { fill: #478E8B }
-.colr8 > path { fill: #E9A874 }
+.legend { 
+	text-align: center;
+}
+.skill {
+	display: inline-block;
+	padding: 8px 15px;
+}
+
+.colr1 > path,
+.skill.colr1 { fill: #566B9C; background: #566B9C; }
+.colr2 > path,
+.skill.colr2 { fill: #6E58A0; background: #6E58A0;   }
+.colr3 > path,
+.skill.colr3 { fill: #E9D874; background: #E9D874;  }
+.colr4 > path,
+.skill.colr4 { fill: #E9C274; background: #E9C274;  }
+.colr5 > path,
+.skill.colr5 { fill: #D36986; background: #D36986;  }
+.colr6 > path,
+.skill.colr6 { fill: #92CE67; background: #92CE67;  }
+.colr7 > path,
+.skill.colr7 { fill: #478E8B; background: #478E8B;  }
+.colr8 > path,
+.skill.colr8 { fill: #E9A874; background: #E9A874;  }
 

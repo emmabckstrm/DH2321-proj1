@@ -1161,7 +1161,6 @@ circosJS.Track = function() {
         _this.renderAxes(datumContainer, _this.conf, instance._layout, _this.data);
       }
       selection = _this.renderDatum(datumContainer, _this.conf, instance._layout, _this);
-      console.log(selection);
       if (_this.conf.tooltipContent != null) {
         circosJS.registerTooltip(instance, _this, selection, _this.conf);
       }
@@ -1175,10 +1174,10 @@ circosJS.Track = function() {
         if (c >= 0) {
           var grpClass = str.substring(c, c+6)
           grpClass = grpClass.replace(/\s/g,'')
-          console.log(grpClass);
+          //console.log(grpClass);
         };
         var chordSelect = ".chord:not(."+String(grpClass)+")"; 
-        console.log(chordSelect);
+        //console.log(chordSelect);
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).addClass("hide");
         $(chordSelect).addClass("hide");
@@ -1194,10 +1193,10 @@ circosJS.Track = function() {
         if (c >= 0) {
           var grpClass = str.substring(c, c+6)
           grpClass = grpClass.replace(/\s/g,'')
-          console.log(grpClass);
+          //console.log(grpClass);
         };
         var chordSelect = ".chord:not(."+String(grpClass)+")"; 
-        console.log(chordSelect);
+        //console.log(chordSelect);
         var colrSelect = ".person:not(."+String(colrClass)+")";
         $(colrSelect).removeClass("hide");
         $(chordSelect).removeClass("hide");

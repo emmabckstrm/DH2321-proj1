@@ -15,62 +15,108 @@
   </style>
 </head>
 <body>
-<svg id='chart' style='display: block; margin: auto;'></svg>
+  <svg id='chart' style='display: block; margin: auto;'></svg>
+  <div id="legend" class="legend"></div>
 
-<script type='text/javascript'>
-  var heatmap_data = dataToHeatmap(studentData);
-  //console.log(heatmap_data);
+  <script type='text/javascript'>
+    renderSkills("legend");
+    var heatmap_data = dataToHeatmap(studentData);
+    //console.log(heatmap_data);
 
-  var test = dataToGroupNum(studentData);
-  //console.log(test.Aldor);
+    var test = dataToGroupNum(studentData);
+    //console.log(test.Aldor);
 
-  var int_data = interestData(studentData);
-  //console.log(int_data);
+    var int_data = interestData(studentData);
+    //console.log(int_data);
 
-  var c_data = dataToChord(int_data, test);
-  //console.log(c_data);
-
-
-
-  var circos = new circosJS({
-      container: '#chart',
-      width: 520,
-      height: 520,
-  });
-
-  circos
-    .layout(
-        {
-            innerRadius: 200,
-            outerRadius: 230,
-            ticks: {display: false},
-            labels: {
-              position: 'center',
-              display: true,
-              size: 14,
-              color: '#000',
-              radialOffset: 15,
-            }
-        },
-        layout_data
-    )
-
-    .heatmap('hm_people', {
-        innerRadius: 115,
-        outerRadius: 195,
-        logScale: false,
-        colorPalette: 'YlOrRd',
-    }, heatmap_data)
-    .chord('c_interests', {usePalette: false, color: '#fd6a62'}, c_data)
-    //.heatmap('days-off', {
-    //    innerRadius: 105,
-    //    outerRadius: 114,
-    //    logScale: false,
-    //    colorPalette: 'Blues'
-    //}, days_off)
-    .render();
+    var c_data = dataToChord(int_data, test);
+    //console.log(c_data);
 
 
-</script>
+
+    var circos = new circosJS({
+        container: '#chart',
+        width: 520,
+        height: 520,
+    });
+
+    circos
+      .layout(
+          {
+              innerRadius: 200,
+              outerRadius: 230,
+              ticks: {display: false},
+              labels: {
+                position: 'center',
+                display: true,
+                size: 14,
+                color: '#000',
+                radialOffset: 15,
+              }
+          },
+          layout_data
+      )
+
+      .heatmap('hm_people', {
+          innerRadius: 115,
+          outerRadius: 195,
+          logScale: false,
+          colorPalette: 'YlOrRd',
+      }, heatmap_data)
+      .chord('c_interests', {usePalette: false, color: '#fd6a62'}, c_data)
+      //.heatmap('days-off', {
+      //    innerRadius: 105,
+      //    outerRadius: 114,
+      //    logScale: false,
+      //    colorPalette: 'Blues'
+      //}, days_off)
+      .render();
+
+
+      $( ".skill" ).mouseover(function(e) {
+        var colrClass = e.currentTarget.classList[1];
+        //console.log(this);
+        // var str = this.getAttribute("class");
+        //       var b = str.indexOf("colr");
+        //       if (b >= 0) {
+        //         var colrClass = str.substring(b, b+5)
+        //       };
+        var colrSelect = ".person:not(."+String(colrClass)+")";
+        $(colrSelect).addClass("hide");
+      });
+      $( ".skill" ).mouseout(function(e) {
+        var colrClass = e.currentTarget.classList[1];
+        //console.log(this);
+        // var str = this.getAttribute("class");
+        //       var b = str.indexOf("colr");
+        //       if (b >= 0) {
+        //         var colrClass = str.substring(b, b+5)
+        //       };
+        var colrSelect = ".person:not(."+String(colrClass)+")";
+        $(colrSelect).removeClass("hide");
+      });
+
+  </script>
+
+
+
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
