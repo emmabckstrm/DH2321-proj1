@@ -4,9 +4,9 @@ var topSkillNum = {
 	"stats": 3,
 	"prog": 4,
 	"art": 5,
-	"user": 8,
-	"math": 7,
 	"hci": 6,
+	"math": 7,
+	"user": 8,
 };
 var topSkills = [
 	"ivis",
@@ -14,9 +14,19 @@ var topSkills = [
 	"stats",
 	"prog",
 	"art",
-	"user",
-	"math",
 	"hci",
+	"math",
+	"user"
+];
+var skillLabels = [
+	"Infovis",
+	"UX",
+	"Stats",
+	"programming",
+	"art",
+	"HCI",
+	"math",
+	"learning"
 ];
 
 var renderSkills = function(id) {
@@ -26,7 +36,7 @@ var renderSkills = function(id) {
 
 		var skill = document.createElement("div");
 		skill.className = "skill colr" + topSkillNum[topSkills[i]];
-		skill.innerHTML = topSkills[i];
+		skill.innerHTML = skillLabels[i];
 
 		container.appendChild(skill);
 	}
@@ -105,7 +115,7 @@ var dataToChord = function(data, groupRef) {
 	return output_data;
 };
 
-var interestData = function(data) {
+var similarInterestData = function(data) {
 	// output data: [
 	//				['Aldor','Aragorn',1]  
 	//				,['Aldor','Arwen',0] ]
@@ -180,12 +190,12 @@ var interestData = function(data) {
 
 		}
 	}
-	return output_data;
-		
-
+	return output_data;	
 };
 
+var dataToInterest = function(data) {
 
+}
 
 
 
