@@ -24,8 +24,13 @@
   var test = dataToGroupNum(studentData);
   //console.log(test.Aldor);
 
-  var c_data = dataToChord(interest_data, test);
+  var int_data = interestData(studentData);
+  //console.log(int_data);
+
+  var c_data = dataToChord(int_data, test);
   //console.log(c_data);
+
+
 
   var circos = new circosJS({
       container: '#chart',

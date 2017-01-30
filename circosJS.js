@@ -619,7 +619,7 @@ circosJS.Chord = function() {
       }).target(function(d) {
         return getTarget(d, layout);
       })).attr('opacity', function(d) {
-        console.log(d);
+        //console.log(d);
         var opac;
         if (d.value === 0) {
           opac = 0;

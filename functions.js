@@ -81,3 +81,114 @@ var dataToChord = function(data, groupRef) {
 
 	return output_data;
 };
+
+var interestData = function(data) {
+	// output data: [
+	//				['Aldor','Aragorn',1]  
+	//				,['Aldor','Arwen',0] ]
+	var output_data = [];
+
+    for (var i=0; i<data.length; i++) {
+		var currStudent = data[i]; //current student
+
+		for (var j=0; j<data.length; j++) {
+			var currArray = [];
+			var commonInt = 0; // common interests
+			var nextStudent = data[j];
+
+			if (currStudent.alias !== nextStudent.alias) {
+				if (currStudent.hobbycreative && nextStudent.hobbycreative) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyphysical && nextStudent.hobbyphysical) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbytech && nextStudent.hobbytech) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbymedia && nextStudent.hobbymedia) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbygames && nextStudent.hobbygames) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbypsychology && nextStudent.hobbypsychology) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbysocial && nextStudent.hobbysocial) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyprogramming && nextStudent.hobbyprogramming) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbygraphics && nextStudent.hobbygraphics) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbytravel && nextStudent.hobbytravel) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyfood && nextStudent.hobbyfood) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbypolitics && nextStudent.hobbypolitics) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbysociety && nextStudent.hobbysociety) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyscience && nextStudent.hobbyscience) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbydesign && nextStudent.hobbydesign) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyculture && nextStudent.hobbyculture) {
+					commonInt += 1;
+				}
+				if (currStudent.hobbyeducation && nextStudent.hobbyeducation) {
+					commonInt += 1;
+				}
+
+				currArray.push(currStudent.alias, nextStudent.alias, commonInt);
+
+				output_data.push(currArray);
+			}
+				
+
+		}
+	}
+	return output_data;
+		
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
