@@ -20,13 +20,13 @@ body {
 	vertical-align: top;
 	display: inline-block;
 	text-align: left;
+	min-height: 300px;
 }
 .skill,
 .interest {
 	display: block;
 	padding: 8px 15px;
 	text-transform: capitalize;
-	min-height: 300px;
 }
 .interest { background: salmon;}
 
