@@ -19,6 +19,20 @@ var topSkills = [
 	"hci",
 ];
 
+var renderSkills = function(id) {
+	var container = document.getElementById(id);
+	for (var i=0;i<topSkills.length;i++) {
+		//console.log(topSkills[i]);
+
+		var skill = document.createElement("div");
+		skill.className = "skill colr" + topSkillNum[topSkills[i]];
+		skill.innerHTML = topSkills[i];
+
+		container.appendChild(skill);
+	}
+}
+
+// Functions to transform the raw data
 var dataToHeatmap = function(data) {
 	// each OUTPUT datum should be
 	// layout_block_id, start, end, value
@@ -39,7 +53,7 @@ var dataToHeatmap = function(data) {
 
 		output_data.push(currArray);
 	}
-
+	document.getElementById("output").innerHTML = JSON.stringify(output_data);
 	return output_data;
 };
 
@@ -88,7 +102,6 @@ var dataToChord = function(data, groupRef) {
 
 		output_data.push(currArray);
 	}
-
 	return output_data;
 };
 
@@ -173,18 +186,6 @@ var interestData = function(data) {
 };
 
 
-var renderSkills = function(id) {
-	var container = document.getElementById(id);
-	for (var i=0;i<topSkills.length;i++) {
-		//console.log(topSkills[i]);
-
-		var skill = document.createElement("div");
-		skill.className = "skill colr" + topSkillNum[topSkills[i]];
-		skill.innerHTML = topSkills[i];
-
-		container.appendChild(skill);
-	}
-}
 
 
 

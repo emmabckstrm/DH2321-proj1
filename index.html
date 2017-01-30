@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <title>IVIS17 - Project 1</title>
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -15,25 +16,29 @@
   </style>
 </head>
 <body>
+  <h1>IVIS17 - Project 1</h1>
   <svg id='chart' style='display: block; margin: auto;'></svg>
-  <div id="legend" class="legend"></div>
+  <div id="legend" class="legend"><h3>Skills</h3></div>
+
+  <pre id="output"></pre>
 
   <script type='text/javascript'>
     renderSkills("legend");
-    var heatmap_data = dataToHeatmap(studentData);
+    // Functions to transform the data
+    //var heatmap_data = dataToHeatmap(studentData);
     //console.log(heatmap_data);
 
-    var test = dataToGroupNum(studentData);
+    //var test = dataToGroupNum(studentData);
     //console.log(test.Aldor);
 
-    var int_data = interestData(studentData);
+    //var int_data = interestData(studentData);
     //console.log(int_data);
 
-    var c_data = dataToChord(int_data, test);
+    //var c_data = dataToChord(int_data, test);
     //console.log(c_data);
 
 
-
+    // Rendering the viz
     var circos = new circosJS({
         container: '#chart',
         width: 520,
@@ -56,22 +61,14 @@
           },
           layout_data
       )
-
       .heatmap('hm_people', {
           innerRadius: 115,
           outerRadius: 195,
           logScale: false,
           colorPalette: 'YlOrRd',
-      }, heatmap_data)
-      .chord('c_interests', {usePalette: false, color: '#fd6a62'}, c_data)
-      //.heatmap('days-off', {
-      //    innerRadius: 105,
-      //    outerRadius: 114,
-      //    logScale: false,
-      //    colorPalette: 'Blues'
-      //}, days_off)
+      }, heatmap)
+      .chord('c_interests', {usePalette: false, color: '#fd6a62'}, chords_data)
       .render();
-
 
       $( ".skill" ).mouseover(function(e) {
         var colrClass = e.currentTarget.classList[1];
